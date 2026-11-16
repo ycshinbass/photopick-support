@@ -1,6 +1,6 @@
 # Photopick Beta 개인정보처리방침 · Privacy Policy
 
-적용 버전:2.17.0 beta / Updated:2026-11-16
+적용 버전:2.17.1 beta / Updated:2026-11-17
 프로젝트:Photopick (ycshinbass)
 문의 / Contact: ycshinbass@gmail.com
 지원 / Support: https://ycshinbass.github.io/photopick-support/support.html
