@@ -1,6 +1,6 @@
 # Photopick Beta 개인정보처리방침 · Privacy Policy
 
-적용 버전:2.17.2 beta / Updated:2026-11-17
+적용 버전:2.17.3 beta / Updated:2026-11-17
 프로젝트:Photopick (ycshinbass)
 문의 / Contact: ycshinbass@gmail.com
 지원 / Support: https://ycshinbass.github.io/photopick-support/support.html
@@ -9,7 +9,7 @@
 
 Photopick은 사용자가 로그인한 Google 포토의 중복 후보와 비슷한 장면을 기기에서 비교합니다. Google과 제휴하거나 Google이 보증하는 프로그램이 아닙니다.
 
-- **사진 처리:** 미리보기·파일 식별자·촬영일·형식·해상도·용량 및 확인 가능한 HDR 정보를 읽습니다. HDR은 원본 메타데이터 구간을 제한적으로 읽습니다. 동영상 서버가 부분 읽기를 지원하지 않으면 파일당 최대 64MiB를 순차 읽고 압축 영상 데이터는 즉시 버리며, 메타데이터만 최대 512KiB까지 메모리에 잠시 보관합니다. 원본 파일을 디스크에 저장하지 않습니다. 영상 전체와 음성 전체의 동일성을 검증하지 않습니다.
+- **사진 처리:** 미리보기·파일 식별자·촬영일·형식·해상도·용량 및 확인 가능한 HDR 정보를 읽습니다. HDR은 원본 메타데이터 구간을 제한적으로 읽습니다. 동영상은 컨테이너 색상 정보와 영상 내부의 HDR 표시를 읽습니다. 부분 읽기가 가능하면 압축 데이터를 건너뛰고, 지원되지 않으면 순차 읽으면서 압축 데이터는 즉시 버립니다. HDR 응답 본문 읽기 예산은 원본당 64 MiB, 작업당 1 GiB이며 중지·재개에도 누적합니다. 이 수치는 브라우저 자체의 선행 네트워크 버퍼를 포함한 전송량 보장은 아닙니다. 컨테이너 메타데이터는 최대 512 KiB, 샘플 위치 표는 최대 100,000개(약 1.2 MB), 개별 HDR 표시 내용은 최대 64 KiB까지 메모리에 잠시 보관합니다. 원본 파일을 디스크에 저장하지 않습니다. 영상 전체와 음성 전체의 동일성을 검증하지 않습니다.
 - **AI 장면 비교:** ‘비슷한 사진’과 ‘정확 모드’를 함께 고르면 확장에 포함된 이미지 모델(DINOv2-small, Apache-2.0)이 이 기기 안에서 작은 미리보기의 특징값을 계산합니다. 모델은 내려받지 않고 확장에 들어 있으며, 사진과 특징값을 개발자나 외부 분석 서비스에 보내지 않습니다. 특징값은 브라우저 메모리에서 처리합니다.
 - **추천 사진 품질 확인:** 같은 조건에서 비슷한 장면 그룹의 640px 미리보기를 Google 서버에서 읽어, 확장에 포함된 얼굴 모델(MediaPipe Face Landmarker, Apache-2.0)과 초점 계산으로 눈 감음·고개 돌림·시선·흐림 여부를 이 기기 안에서 확인합니다. 얼굴을 알아보거나 사람을 식별하지 않으며, 결과 수치는 브라우저 메모리에서 처리하며, 최종 추천 내용은 아래 임시 결과 사본에 포함될 수 있습니다. 사진과 수치를 개발자나 외부 분석 서비스에 보내지 않습니다.
 - **통신:** Google 포토와 Google 이미지 서버에 기존 페이지 로그인 문맥으로 읽기 요청을 보냅니다. 필요한 페이지 세션 값은 페이지 안에서 처리하며 프로필 파일·비밀번호·쿠키를 추출하지 않습니다. 사진·사진 주소·Google 인증정보를 개발자 서버에 보내거나 다른 분석 서버에 업로드하지 않습니다.
@@ -25,7 +25,7 @@ Photopick은 사용자가 로그인한 Google 포토의 중복 후보와 비슷�
 
 Photopick compares candidates in the Google Photos account you use, on your device. It is not affiliated with or endorsed by Google.
 
-- **Media:** It reads previews, file identifiers, capture dates, formats, dimensions, sizes and available HDR metadata. HDR checking reads bounded original metadata ranges. If the original-video server does not support ranges, up to 64 MiB per file is read sequentially; compressed video samples are immediately discarded and only up to 512 KiB of metadata is retained temporarily in memory. No original media file is saved to disk. Full video/audio identity is not verified.
+- **Media:** It reads previews, file identifiers, capture dates, formats, dimensions, sizes and available HDR metadata. HDR checking reads bounded original metadata ranges. For videos, it checks container colour information and HDR signalling inside the video. Compressed payloads are skipped when range reads work, or discarded during a sequential read otherwise. HDR response-body read budgets are 64 MiB per original and 1 GiB per scan, including pause/resume. These counters do not guarantee total network transfer including browser prefetch buffers. Temporarily retained data is limited to 512 KiB of container metadata, 100,000 sample positions (about 1.2 MB), and 64 KiB per HDR signalling unit. No original media file is saved to disk. Full video/audio identity is not verified.
 - **On-device scene model:** With *Similar photos* and *Accurate mode*, a bundled image model (DINOv2-small, Apache-2.0) computes features of small previews on this device. The model ships inside the extension; photos and features are not sent to the developer or external analysis services. Features are processed in browser memory.
 - **Keeper quality check:** Under the same settings, 640px previews of similar-scene groups are read from Google servers and checked on this device for closed eyes, turned heads, gaze and blur using a bundled face model (MediaPipe Face Landmarker, Apache-2.0) and a focus measure. It does not recognize or identify people. Scores are processed in browser memory; final recommendations may be included in the temporary result copies described below. Photos and scores are not sent to the developer or external analysis services.
 - **Network:** Read requests go to Google Photos and Google image servers using the current page's sign-in context. Required page-session values stay inside that page. Browser profile files, passwords and cookies are not extracted. Photos, private photo URLs and Google credentials are not sent to the developer or another analysis service.
