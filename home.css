@@ -181,3 +181,27 @@ summary { cursor: pointer; color: var(--ink); font-weight: 650; }
   .actions { align-items: flex-start; flex-direction: column; gap: .2rem; }
   .steps li { padding-left: 2.8rem; }
 }
+
+.video-tour {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(2rem, 4vw, 3.75rem) clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 1.25rem;
+}
+.tour-intro p { max-width: 39ch; margin-top: .9rem; color: var(--muted); }
+.tour-intro .text-link { margin-top: .25rem; }
+.demo-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 16px;
+  background: var(--ink);
+}
+@media (max-width: 850px) {
+  .video-tour { grid-template-columns: 1fr; max-width: 690px; gap: 1rem; }
+}
