@@ -178,6 +178,7 @@ summary { cursor: pointer; color: var(--ink); font-weight: 650; }
 @media (max-width: 420px) {
   .hero { padding-top: 2.25rem; }
   .header-inner { gap: .65rem; }
+  .site-header nav { column-gap: .65rem; }
   .actions { align-items: flex-start; flex-direction: column; gap: .2rem; }
   .steps li { padding-left: 2.8rem; }
 }
@@ -205,3 +206,9 @@ summary { cursor: pointer; color: var(--ink); font-weight: 650; }
 @media (max-width: 850px) {
   .video-tour { grid-template-columns: 1fr; max-width: 690px; gap: 1rem; }
 }
+
+.updates { max-width: 760px; padding-block: clamp(2.25rem, 6vw, 5rem); }
+.updates article { border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 1.75rem; }
+.updates h3 { margin-top: 1.2rem; }
+.updates article p { margin-top: .45rem; color: var(--muted); }
+.updates article .release-status { color: var(--blue); font-weight: 650; }
